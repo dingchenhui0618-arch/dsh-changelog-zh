@@ -1,0 +1,38 @@
+name: CI
+
+# lib/ 是入库的构建产物，所以流水线第一件事是「重新构建并确认 lib/ 与 src/ 一致」——
+# 否则会发出一个与源码不符的包。测试跑在 Node 22 与 24 两档上。
+
+on:
+  push:
+    branches: ['**']
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        node: ['22', '24']
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+
+      - name: 重新构建并确认 lib/ 与 src/ 一致
+        run: |
+          node scripts/build.mjs
+          git diff --exit-code -- lib
+
+      - name: 单元测试与端到端测试
+        run: node --test test/*.test.mjs
+
+      - name: CLI 冒烟（在仓库自己身上生成一次）
+        run: node bin/changelog-zh.mjs --repo . --out /tmp/cz --stdout --format user

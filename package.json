@@ -1,0 +1,66 @@
+{
+  "name": "dsh-changelog-zh",
+  "version": "0.1.0",
+  "description": "从真实 git 历史（可选叠加会话记录）生成两份中文变更日志——面向用户的短版与面向开发者的长版，每条都带 commit SHA 和「已验证/未验证」标记。",
+  "type": "module",
+  "main": "lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./client": "./lib/client.js",
+    "./core": "./lib/core.js",
+    "./cordis.patch.yml": "./cordis.patch.yml",
+    "./package.json": "./package.json"
+  },
+  "bin": {
+    "changelog-zh": "bin/changelog-zh.mjs"
+  },
+  "files": [
+    "lib",
+    "src",
+    "bin",
+    "cordis.patch.yml",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "test": "node scripts/build.mjs && node --test test/*.test.mjs",
+    "changelog": "node bin/changelog-zh.mjs",
+    "prepack": "node scripts/build.mjs"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "inject": [
+        "@deepseek-ai/dsh-client-runtime",
+        "@deepseek-ai/dsh-client-ui-conversation",
+        "@deepseek-ai/dsh-client-ui-layout"
+      ],
+      "platform": "web"
+    }
+  },
+  "keywords": [
+    "deepseek-harness",
+    "dsh",
+    "dsh-plugin",
+    "changelog",
+    "release-notes",
+    "中文",
+    "git"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dingchenhui0618-arch/dsh-changelog-zh.git"
+  },
+  "homepage": "https://github.com/dingchenhui0618-arch/dsh-changelog-zh#readme",
+  "bugs": {
+    "url": "https://github.com/dingchenhui0618-arch/dsh-changelog-zh/issues"
+  },
+  "license": "MIT"
+}
