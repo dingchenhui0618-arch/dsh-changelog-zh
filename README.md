@@ -1,5 +1,8 @@
 # dsh-changelog-zh
 
+[![CI](https://github.com/dingchenhui0618-arch/dsh-changelog-zh/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/dingchenhui0618-arch/dsh-changelog-zh/actions/workflows/ci.yml)
+[![license](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+
 从真实 git 历史生成**两份中文变更日志**：
 
 - **用户版（短）**——一段可以直接贴进群公告或 Release 正文的中文说明；
@@ -14,6 +17,8 @@
 3. **不翻译提交信息。** 你没写中文标题的提交，就原样保留英文主题，并明确告诉你「有 N 条没有中文标题」——不会给你一段看起来很像中文、实际是模型编的文案。
 
 当前版本 **0.1.0**。
+
+> 用着还行的话，点个 ⭐ 就够了——插件市场的「搜插件」按 GitHub star 排序，star 是这个插件能被人翻到的唯一杠杆。
 
 ---
 
